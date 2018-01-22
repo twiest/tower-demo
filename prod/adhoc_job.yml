@@ -1,0 +1,16 @@
+#!/usr/bin/ansible-playbook
+
+- name: Demo-ing an adhoc job in tower
+  hosts: "oo_environment_{{ g_branch }}:&oo_version_3:&oo_config_True:&oo_hosttype_master"
+  user: root
+  gather_facts: no
+
+  vars_prompt:
+  - name: g_name
+    prompt: what is your name?
+    private: no
+    default: World!
+
+  tasks:
+  - name: display the message
+    debug: msg="Hello {{ g_name }}"
