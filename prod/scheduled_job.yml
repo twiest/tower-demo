@@ -1,0 +1,12 @@
+#!/usr/bin/ansible-playbook
+
+- name: Demo-ing a scheduled job in tower
+  hosts: "oo_environment_{{ g_branch }}:&oo_version_3:&oo_config_True:&oo_hosttype_master"
+  user: root
+  gather_facts: no
+  tasks:
+  - name: Get the current date time
+    command: date
+    register: date_time
+
+  - debug: msg="Run at {{ date_time.stdout }}"
